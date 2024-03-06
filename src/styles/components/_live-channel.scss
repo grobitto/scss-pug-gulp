@@ -1,0 +1,33 @@
+.live-channels-wrapper {
+    margin:20px -10px;
+    padding-left:10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap:20px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left:10px;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }    
+}
+
+.live-channel {
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis:140px;
+    &:nth-child(2n+1) {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    &__program {
+        font-size:11px;
+        font-weight: normal;
+    }
+}

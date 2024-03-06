@@ -1,0 +1,14 @@
+@use "utils-config" as config;
+@use "uniform" as * with (
+    $config: (
+        screen-delimiter: ":",
+        excludes: (
+            all,
+            // other excluded properties
+        ),
+        includes: config.$includes, 
+        utilities: config.$utils
+    )
+);
+
+ 

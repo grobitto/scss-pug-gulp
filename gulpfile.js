@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const sass = require('gulp-sass')(require('dart-sass'));
+const sass = require('gulp-sass')(require('sass'));
 const pug = require('gulp-pug');
 const plumber = require( 'gulp-plumber');
 const notifier = require('node-notifier');
@@ -7,7 +7,7 @@ const browserSync = require('browser-sync').create();
 var clean = require('gulp-clean');
 // Styles
 gulp.task('styles', function( done) {
-    return gulp.src('src/styles/**/*.scss')
+    return gulp.src('src/styles/*.scss')
       .pipe( plumber())
       .pipe(sass({ style: 'expanded' })
       .on( 'error', function( error) {

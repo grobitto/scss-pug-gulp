@@ -1,0 +1,49 @@
+include ../mixins/generate-text
+include ../components/header
+include ../components/channels
+mixin article( main)
+    article.article(class=main?'article--main':'')
+        if( main)
+            img.artilcle__image( src="https://placekitten.com/800/500")
+        else 
+            img.artilcle__image( src="https://placekitten.com/800/600")        
+        h3.article__title: a( href="#"): +words(5,20)
+        .article__brief
+            +words( 10,30)
+        .article__details
+            time( datetime="2023-01-01") Вчера в 12:00 | 
+            a( href="#") Футбол
+mixin news 
+    article.news
+        .news__details 
+            time( datetime="2023-01-01") Вчера в 12:00
+            | |
+            a( href="#") Футбол 
+        a.news__title( href="#"): +words( 5, 25)    
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet", href="styles/grid.css")
+    body
+        input( type="checkbox" id="menu-toggle")
+        .page 
+            +header
+            .container 
+                +channels
+                .main-block 
+                    .main-block__aside
+                        .main-block__banner 
+                        .main-block__news  
+                            .news-list
+                                each _ in Array(10)
+                                    +news
+                                a.news-list__all(href="#") Все новости
+                    +article(true)
+                    +article
+                    +article
+                    +article
+                    +article

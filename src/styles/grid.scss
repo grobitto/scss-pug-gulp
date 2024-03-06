@@ -1,0 +1,116 @@
+@use "util/reset";
+@use "components";
+body {
+    font-family: sans-serif;
+    font-size:16px;
+}
+.page {
+    max-width:1100px;
+    margin: 0 auto;
+}
+.container {
+    padding:0 10px;
+}
+.main-block {
+    display:grid;
+    width:100%;
+    gap:20px;
+    grid-template-areas: 
+    "main"
+    "news"
+    "article1"
+    "article2"
+    "article3" 
+    "article4";
+    grid-template-columns: 1fr;
+    &__aside {
+        grid-area: news;
+    }
+
+
+    &__banner {
+        width:300px;
+        height:500px;
+        background-color: fade-out($color: red, $amount: 0.5);
+        &::before {
+            content: 'Баннер'
+        }
+        margin-bottom: 20px;
+        display: none;
+    }
+    @media( min-width:768px) {
+        grid-template-areas: 
+        "main main"
+        "news news"
+        "article1 article2"
+        "article3 article4";
+        grid-template-columns: 1fr 1fr;
+    }
+    @media( min-width:1024px)
+    {
+        grid-template-areas: 
+        "main main aside"
+        "article1 article2 aside"
+        "article3 article4 aside";
+        grid-template-columns: 1fr 1fr 300px;
+        &__aside {
+            grid-area: aside;
+        }
+        &__banner {
+            display: block;
+        }
+    }
+    .article:nth-of-type(1) {
+        grid-area: main;
+    }
+    .article:nth-of-type(2) {
+        grid-area: article1;
+    }
+    .article:nth-of-type(3) {
+        grid-area: article2;
+    }
+    .article:nth-of-type(4) {
+        grid-area: article3;
+    }
+    .article:nth-of-type(5) {
+        grid-area: article4;
+    }        
+
+}
+
+.article {
+    border: 1px solid #ccc;
+    padding:10px;
+    display: flex;
+    flex-direction: column;
+    min-width:320px;
+    &__image {
+        max-width: 100%;;
+    }
+
+    &__details{
+        margin-top:auto;
+        padding-top:10px;
+        color: #999;
+    }
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.news {
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    &__details {
+        font-size:12px;
+        color: #555;
+    }
+    &__title {
+        text-decoration: none;
+        color: inherit;
+    }
+}

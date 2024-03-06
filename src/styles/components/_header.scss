@@ -1,0 +1,103 @@
+$header-height:70px;
+.header {
+    background: #333;
+    width:100%;
+    height:$header-height;
+    color: white;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    &__logo {
+        width:100px;
+        height:60px;
+        background-color: greenyellow;
+        &::before {
+            content: 'logo'
+        }
+    }
+    &__burger {
+        width:50px;
+        height:50px;
+        background:#aaa;
+        margin-left: auto;
+        cursor:pointer;
+    }
+    @media( min-width:1024px) {
+        background-color: white;
+        color: black;
+        height:auto;
+        &__burger {
+            display:none;
+        }
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        grid-template-areas: 
+        "logo media media media media language"
+        "sport sport sport sport sport sport";
+        &__logo {
+            grid-area: logo;
+        }
+    }
+}
+
+.mobile-menu {
+    position:absolute;
+    left:-1000px;
+    background:#555;
+    top:70px;
+    color:white;
+    a {
+        color: white;
+    }
+    @media( min-width:1024px) {
+        position: static;
+        display: contents;
+        color:black;
+        a {
+            color:black ;
+        }
+    }
+}
+@media( min-width:1024px) {
+    .media-menu {
+        display:flex;
+        flex-direction: row;
+        grid-area: media;
+        gap:20px;
+    }
+    .sport-menu {
+        display:flex;
+        flex-direction: row;
+        grid-area: sport;
+        gap:20px;
+        color:white;
+        background-color: #555;
+        @supports( clip-path:polygon(-100vw 0, 100vw 0, 100vw 100%, -100vw 100%))
+        {
+            box-shadow: 0px 0px 0px 100vw #555;            
+            clip-path: polygon(-100vw 0, 100vw 0, 100vw 100%, -100vw 100%);
+        }
+        a {
+            color:white;
+        }
+    }
+    .language-menu {
+        display:flex;
+        flex-direction: row;
+        grid-area: language;
+    }
+}
+#menu-toggle {
+    position:absolute;
+    left:-1000px;
+    &:checked + .page header .mobile-menu {
+        left:0px;
+        right:0px;
+        height:calc( 100vh - $header-height);
+    }
+    &:checked + .page {
+        height:calc( 100vh);
+        overflow-y: hidden;
+    }
+}

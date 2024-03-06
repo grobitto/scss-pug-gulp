@@ -1,0 +1,17 @@
+@use "sass:map";
+$vars: (
+    1: 0.062rem,
+    2: 0.125rem
+);
+$utils: ();
+$includes: (margin, margin-top, margin-bottom, margin-left, margin-right);
+//map.set($font-weights, "regular", 300);
+@each $prop in $includes {
+    $utils: map.set( $utils, $prop, (
+        variants: null,
+        pseudos: null,
+        extend: (
+            variants: $vars
+        )        
+    ));
+}

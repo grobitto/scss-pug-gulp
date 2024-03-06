@@ -1,0 +1,11 @@
+include ../mixins/generate-text
+mixin channels 
+    .live-channels-wrapper
+        each _ in Array(6)
+            .live-channel
+                a(href="#"): img(src="https://placekitten.com/100/50").live-channel__logo 
+                h5.live-channel__title 
+                    +words( 1, 2)
+                h5.live-channel__program 
+                    +words( 5, 20)
+
